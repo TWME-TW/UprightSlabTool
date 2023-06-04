@@ -11,7 +11,7 @@ public class UprightSlabToolCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("只有玩家可以使用");
+            sender.sendMessage("Only player can use.");
             return false;
         }
         Player player = (Player) sender;

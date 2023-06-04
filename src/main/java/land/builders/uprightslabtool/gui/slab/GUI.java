@@ -45,7 +45,7 @@ public class GUI {
         player.playSound(player.getLocation(), Sound.BLOCK_CHEST_OPEN,1f,1f);
         Window window = Window.single()
                 .setViewer(player)
-                .setTitle("直立半磚選單")
+                .setTitle("Upright Slab Menu")
                 .setGui(gui)
                 .build();
         window.open();
