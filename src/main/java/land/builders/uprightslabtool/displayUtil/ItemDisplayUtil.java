@@ -15,10 +15,6 @@ import org.bukkit.util.Vector;
 public class ItemDisplayUtil {
     public static void placeUtil(Player player){
 
-
-        player.sendMessage("Debug：*********************************************");
-
-
         World world = player.getWorld();
         Location eyeLocation = player.getEyeLocation();
         Vector direction = player.getEyeLocation().getDirection();
@@ -29,17 +25,13 @@ public class ItemDisplayUtil {
 
         if (rayTraceEntity != null && rayTraceBlock != null){
             if (rayTraceEntity.getHitEntity().getLocation().distance(eyeLocation) < rayTraceBlock.getHitBlock().getLocation().distance(eyeLocation)){
-                player.sendMessage("Debug：Use TraceEntity1");
                 uesItemDisplayLocation(rayTraceEntity,player);
             } else {
-                player.sendMessage("Debug：Use TraceBlock1");
                 useBlockLocation(rayTraceBlock,player);
             }
         } else if (rayTraceEntity != null){
-            player.sendMessage("Debug：Use TraceEntity2");
             uesItemDisplayLocation(rayTraceEntity,player);
         } else {
-            player.sendMessage("Debug：Use TraceBlock2");
             useBlockLocation(rayTraceBlock,player);
         }
     }
@@ -105,10 +97,6 @@ public class ItemDisplayUtil {
 
         Location blockLocation = new Location(player.getWorld(), entityBlockX,entityBlockY,entityBlockZ);
 
-        player.sendMessage("Debug：Entity X Y Z " + entityX + " " + entityY + " " + entityZ);
-        player.sendMessage("Debug：Hit X Y Z " + hitPosX + " " + hitPosY + " " + hitPosZ);
-        player.sendMessage("Debug：EntityBlock X Y Z " + entityBlockX + " " + entityBlockY + " " + entityBlockZ);
-
         if (entityX-hitPosX == 0.5){
             blockLocation.add(-1,0,0);
         } else if (entityX-hitPosX == -0.5) {
@@ -122,7 +110,6 @@ public class ItemDisplayUtil {
         } else if (entityZ-hitPosZ == -0.5) {
             blockLocation.add(0,0,1);
         }
-        //blockLocation.add(-0.5,-0.5,-0.5);
 
         float itemDisplayYaw = getItemDisplayYaw(player.getLocation().getYaw());
 
@@ -131,8 +118,6 @@ public class ItemDisplayUtil {
 
     private static void spawnItemDisplay(Location location,float yaw,Player player){
         location.add(0.5,0.5,0.5);
-
-        player.sendMessage("Final X Y Z" + location.getX() + " " + location.getY() + " " + location.getZ());
 
         ItemDisplay itemDisplay = (ItemDisplay) player.getWorld().spawnEntity(location, EntityType.ITEM_DISPLAY);
         ItemStack itemStack = new ItemStack(PlayerData.playerMaterial.get(player.getUniqueId()));
