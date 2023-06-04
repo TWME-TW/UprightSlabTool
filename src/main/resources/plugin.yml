@@ -3,6 +3,7 @@ version: '${project.version}'
 main: land.builders.uprightslabtool.UprightSlabTool
 api-version: 1.19
 author: TWME
+website: https://github.com/TWME-TW/UprightSlabTool
 commands:
   uprightslabtool:
     permission: uprightslabtool.use
