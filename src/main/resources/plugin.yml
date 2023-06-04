@@ -1,0 +1,14 @@
+name: UprightSlabTool
+version: '${project.version}'
+main: land.builders.uprightslabtool.UprightSlabTool
+api-version: 1.19
+author: TWME
+commands:
+  uprightslabtool:
+    permission: uprightslabtool.use
+    aliases:
+      - uprightslabtool
+      - ust
+permissions:
+  uprightslabtool.use:
+    default: op
