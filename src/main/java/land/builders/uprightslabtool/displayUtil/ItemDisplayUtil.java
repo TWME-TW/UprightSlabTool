@@ -3,6 +3,7 @@ package land.builders.uprightslabtool.displayUtil;
 import land.builders.uprightslabtool.data.PlayerData;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
@@ -123,5 +124,6 @@ public class ItemDisplayUtil {
         ItemStack itemStack = new ItemStack(PlayerData.playerMaterial.get(player.getUniqueId()));
         itemDisplay.setItemStack(itemStack);
         itemDisplay.setRotation(yaw,-90);
+        player.playSound(player.getLocation(), Sound.BLOCK_STONE_PLACE,1f,1f);
     }
 }
