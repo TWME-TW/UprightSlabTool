@@ -25,7 +25,6 @@ public class SlabItem extends AbstractItem {
 
     @Override
     public void handleClick(@NotNull ClickType clickType, @NotNull Player player, @NotNull InventoryClickEvent event) {
-        player.sendMessage("直立 " + material.name());
         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT,1f,1f);
         PlayerData.playerMaterial.put(player.getUniqueId(), material);
         player.closeInventory();
