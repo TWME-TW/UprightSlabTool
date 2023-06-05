@@ -1,43 +1,38 @@
 package land.builders.uprightslabtool.displayUtil;
 
 import land.builders.uprightslabtool.data.PlayerData;
-import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.World;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.RayTraceResult;
-import org.bukkit.util.Vector;
 
 public class ItemDisplayUtil {
-    public static void placeUtil(Player player){
-
-        World world = player.getWorld();
-        Location eyeLocation = player.getEyeLocation();
-        Vector direction = player.getEyeLocation().getDirection();
-
-        RayTraceResult rayTraceEntity = world.rayTraceEntities(eyeLocation, direction, 5, 0.5, p -> !player.getUniqueId().equals(p.getUniqueId()));
-
-        RayTraceResult rayTraceBlock = world.rayTraceBlocks(eyeLocation, direction, 5, FluidCollisionMode.ALWAYS, false);
-
-        if (rayTraceEntity != null && rayTraceBlock != null){
-            if (rayTraceEntity.getHitEntity().getLocation().distance(eyeLocation) < rayTraceBlock.getHitBlock().getLocation().distance(eyeLocation)){
-                uesItemDisplayLocation(rayTraceEntity,player);
-            } else {
-                useBlockLocation(rayTraceBlock,player);
-            }
-        } else if (rayTraceEntity != null){
-            uesItemDisplayLocation(rayTraceEntity,player);
-        } else {
-            useBlockLocation(rayTraceBlock,player);
-        }
-    }
-
-
+//    public static void placeUtil(Player player){
+//
+//        World world = player.getWorld();
+//        Location eyeLocation = player.getEyeLocation();
+//        Vector direction = player.getEyeLocation().getDirection();
+//
+//        RayTraceResult rayTraceEntity = world.rayTraceEntities(eyeLocation, direction, 5, 0.5, p -> !player.getUniqueId().equals(p.getUniqueId()));
+//
+//        RayTraceResult rayTraceBlock = world.rayTraceBlocks(eyeLocation, direction, 5, FluidCollisionMode.ALWAYS, false);
+//
+//        if (rayTraceEntity != null && rayTraceBlock != null){
+//            if (rayTraceEntity.getHitEntity().getLocation().distance(eyeLocation) < rayTraceBlock.getHitBlock().getLocation().distance(eyeLocation)){
+//                uesItemDisplayLocation(rayTraceEntity,player);
+//            } else {
+//                useBlockLocation(rayTraceBlock,player);
+//            }
+//        } else if (rayTraceEntity != null){
+//            uesItemDisplayLocation(rayTraceEntity,player);
+//        } else {
+//            useBlockLocation(rayTraceBlock,player);
+//        }
+//    }
 
     private static float getItemDisplayYaw(float playerYaw){
         playerYaw += 180;
@@ -54,7 +49,7 @@ public class ItemDisplayUtil {
         return itemDisplayYaw;
     }
 
-    private static void useBlockLocation(RayTraceResult rayTraceResult,Player player){
+    public static void useBlockLocation(RayTraceResult rayTraceResult, Player player){
 
         Location itemDisplayLocation = rayTraceResult.getHitBlock().getLocation();
         BlockFace blockFace = rayTraceResult.getHitBlockFace();
@@ -80,7 +75,7 @@ public class ItemDisplayUtil {
 
 
 
-    private static void uesItemDisplayLocation(RayTraceResult rayTraceResult,Player player){
+    public static void uesItemDisplayLocation(RayTraceResult rayTraceResult, Player player){
 
         double entityX,entityY,entityZ,hitPosX,hitPosY,hitPosZ,entityBlockX,entityBlockY,entityBlockZ;
 
@@ -121,7 +116,7 @@ public class ItemDisplayUtil {
         location.add(0.5,0.5,0.5);
 
         ItemDisplay itemDisplay = (ItemDisplay) player.getWorld().spawnEntity(location, EntityType.ITEM_DISPLAY);
-        ItemStack itemStack = new ItemStack(PlayerData.playerMaterial.get(player.getUniqueId()));
+        ItemStack itemStack = new ItemStack(PlayerData.playerSlabMaterial.get(player.getUniqueId()));
         itemDisplay.setItemStack(itemStack);
         itemDisplay.setRotation(yaw,-90);
         player.playSound(player.getLocation(), Sound.BLOCK_STONE_PLACE,1f,1f);
