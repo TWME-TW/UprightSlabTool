@@ -1,7 +1,7 @@
 package land.builders.uprightslabtool;
 
 import land.builders.uprightslabtool.commands.UprightSlabToolCommand;
-import land.builders.uprightslabtool.gui.slab.GUI;
+import land.builders.uprightslabtool.gui.slab.SlabGUI;
 import land.builders.uprightslabtool.listeners.BlockBreakListener;
 import land.builders.uprightslabtool.listeners.LeftClickListener;
 import land.builders.uprightslabtool.listeners.PlayerQuitListener;
@@ -15,7 +15,7 @@ public final class UprightSlabTool extends JavaPlugin {
     public void onEnable() {
         registerCommands();
         registerListener();
-        GUI.buildGUI();
+        SlabGUI.buildGUI();
     }
 
     @Override
