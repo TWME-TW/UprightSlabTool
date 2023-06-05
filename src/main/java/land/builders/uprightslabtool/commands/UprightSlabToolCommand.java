@@ -1,6 +1,6 @@
 package land.builders.uprightslabtool.commands;
 
-import land.builders.uprightslabtool.gui.slab.GUI;
+import land.builders.uprightslabtool.gui.slab.SlabGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,7 +16,7 @@ public class UprightSlabToolCommand implements CommandExecutor {
         }
         Player player = (Player) sender;
         if (player.hasPermission("uprightslabtool.use")){
-            GUI.openWindow(player);
+            SlabGUI.openWindow(player);
             return true;
         }
 

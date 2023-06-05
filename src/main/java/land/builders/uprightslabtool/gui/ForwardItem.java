@@ -1,4 +1,4 @@
-package land.builders.uprightslabtool.gui.slab;
+package land.builders.uprightslabtool.gui;
 
 import org.bukkit.Material;
 import xyz.xenondevs.invui.gui.PagedGui;

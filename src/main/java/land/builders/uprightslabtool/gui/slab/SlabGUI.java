@@ -1,5 +1,8 @@
 package land.builders.uprightslabtool.gui.slab;
 
+import land.builders.uprightslabtool.gui.BackItem;
+import land.builders.uprightslabtool.gui.ForwardItem;
+import land.builders.uprightslabtool.gui.ListItem;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -15,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GUI {
+public class SlabGUI {
     private static Gui gui;
 
     public static void buildGUI () {
@@ -23,7 +26,7 @@ public class GUI {
 
         List<Item> items = Arrays.stream(Material.values())
                 .filter(material -> material.name().toLowerCase().matches(".*slab+"))
-                .map(SlabItem::new)
+                .map(ListItem::new)
                 .collect(Collectors.toList());
 
         gui = PagedGui.items()

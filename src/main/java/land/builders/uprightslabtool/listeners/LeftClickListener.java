@@ -1,6 +1,6 @@
 package land.builders.uprightslabtool.listeners;
 
-import land.builders.uprightslabtool.gui.slab.GUI;
+import land.builders.uprightslabtool.gui.slab.SlabGUI;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -31,14 +31,14 @@ public class LeftClickListener implements Listener {
         if (event.getItem() == null || !event.getItem().getType().equals(Material.BONE))
             return;
 
-        event.setCancelled(true);
-
         if (!player.hasPermission("uprightslabtool.use")){
             return;
         }
 
+        event.setCancelled(true);
+
         if (player.isSneaking()) {
-            GUI.openWindow(player);
+            SlabGUI.openWindow(player);
             return;
         }
 

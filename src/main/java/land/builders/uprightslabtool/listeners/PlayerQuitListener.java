@@ -11,8 +11,8 @@ public class PlayerQuitListener implements Listener {
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        if (PlayerData.playerMaterial.containsKey(player.getUniqueId())){
-            PlayerData.playerMaterial.remove(player.getUniqueId());
+        if (PlayerData.playerSlabMaterial.containsKey(player.getUniqueId())){
+            PlayerData.playerSlabMaterial.remove(player.getUniqueId());
         }
     }
 }
