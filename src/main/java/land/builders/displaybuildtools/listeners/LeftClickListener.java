@@ -1,10 +1,8 @@
-package land.builders.uprightslabtool.listeners;
+package land.builders.displaybuildtools.listeners;
 
-import land.builders.uprightslabtool.gui.slab.SlabGUI;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import land.builders.displaybuildtools.displayUtil.UprightSlabUtil;
+import land.builders.displaybuildtools.gui.ItemWindow;
+import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,29 +26,32 @@ public class LeftClickListener implements Listener {
         if (!event.getAction().equals(Action.LEFT_CLICK_AIR) && !event.getAction().equals(Action.LEFT_CLICK_BLOCK))
             return;
 
-        if (event.getItem() == null || !event.getItem().getType().equals(Material.BONE))
-            return;
-
-        if (!player.hasPermission("uprightslabtool.use")){
+        if (!player.hasPermission("displaybuildtools.use")){
             return;
         }
 
         event.setCancelled(true);
 
         if (player.isSneaking()) {
-            SlabGUI.openWindow(player);
+            ItemWindow.openWindow(player);
             return;
         }
 
         World world = player.getWorld();
         Location eyeLocation = player.getEyeLocation();
         Vector direction = player.getEyeLocation().getDirection();
-        RayTraceResult rayTraceResult = world.rayTraceEntities(eyeLocation,direction,5,0.6, p -> !player.getUniqueId().equals(p.getUniqueId()));
-        if (rayTraceResult != null){
-            if (rayTraceResult.getHitEntity().getType().equals(EntityType.ITEM_DISPLAY)){
-                rayTraceResult.getHitEntity().remove();
+
+        RayTraceResult entityRT = world.rayTraceEntities(eyeLocation,direction,5,0.6, p -> !player.getUniqueId().equals(p.getUniqueId()));
+        RayTraceResult blockRT = world.rayTraceBlocks(eyeLocation, direction, 5, FluidCollisionMode.ALWAYS, false);
+
+        if (entityRT != null && blockRT != null){
+            if (entityRT.getHitEntity().getLocation().distance(eyeLocation) < blockRT.getHitBlock().getLocation().distance(eyeLocation)){
+                entityRT.getHitEntity().remove();
                 player.playSound(player.getLocation(), Sound.BLOCK_STONE_BREAK,1f,1f);
             }
+        } else if (entityRT != null){
+            entityRT.getHitEntity().remove();
+            player.playSound(player.getLocation(), Sound.BLOCK_STONE_BREAK,1f,1f);
         }
     }
 }

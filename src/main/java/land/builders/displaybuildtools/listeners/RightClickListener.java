@@ -1,8 +1,7 @@
-package land.builders.uprightslabtool.listeners;
+package land.builders.displaybuildtools.listeners;
 
-import land.builders.uprightslabtool.data.PlayerData;
-import land.builders.uprightslabtool.displayUtil.ItemDisplayUtil;
-import land.builders.uprightslabtool.gui.slab.SlabGUI;
+import land.builders.displaybuildtools.displayUtil.UprightSlabUtil;
+import land.builders.displaybuildtools.gui.ItemWindow;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -35,17 +34,13 @@ public class RightClickListener implements Listener {
             return;
         if (event.getItem() == null || !event.getItem().getType().equals(Material.BONE))
             return;
-        if (!player.hasPermission("uprightslabtool.use"))
+        if (!player.hasPermission("displaybuildtools.use"))
             return;
 
         event.setCancelled(true);
 
         if (player.isSneaking()) {
-            SlabGUI.openWindow(player);
-            return;
-        }
-
-        if (!PlayerData.playerSlabMaterial.containsKey(player.getUniqueId())){
+            ItemWindow.openWindow(player);
             return;
         }
 
@@ -66,14 +61,14 @@ public class RightClickListener implements Listener {
         RayTraceResult rayTraceBlock = world.rayTraceBlocks(eyeLocation, direction, 5, FluidCollisionMode.ALWAYS, false);
         if (rayTraceEntity != null && rayTraceBlock != null){
             if (rayTraceEntity.getHitEntity().getLocation().distance(eyeLocation) < rayTraceBlock.getHitBlock().getLocation().distance(eyeLocation)){
-                ItemDisplayUtil.uesItemDisplayLocation(rayTraceEntity,player);
+                UprightSlabUtil.uesItemDisplayLocation(rayTraceEntity,player);
             } else {
-                ItemDisplayUtil.useBlockLocation(rayTraceBlock,player);
+                UprightSlabUtil.useBlockLocation(rayTraceBlock,player);
             }
         } else if (rayTraceEntity != null){
-            ItemDisplayUtil.uesItemDisplayLocation(rayTraceEntity,player);
+            UprightSlabUtil.uesItemDisplayLocation(rayTraceEntity,player);
         } else {
-            ItemDisplayUtil.useBlockLocation(rayTraceBlock,player);
+            UprightSlabUtil.useBlockLocation(rayTraceBlock,player);
         }
 //        ItemDisplayUtil.placeUtil(player);
         cooldown.put(player.getUniqueId(),currentTime);

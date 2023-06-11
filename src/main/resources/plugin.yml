@@ -1,15 +1,15 @@
-name: UprightSlabTool
+name: DisplayBuildTools
 version: '${project.version}'
-main: land.builders.uprightslabtool.UprightSlabTool
+main: land.builders.displaybuildtools.DisplayBuildTools
 api-version: 1.19
 author: TWME
 website: https://github.com/TWME-TW/UprightSlabTool
 commands:
-  uprightslabtool:
-    permission: uprightslabtool.use
+  displaybuildtools:
+    permission: displaybuildtools.use
     aliases:
-      - uprightslabtool
-      - ust
+      - displaybuildtools
+      - dbt
 permissions:
-  uprightslabtool.use:
+  displaybuildtools.use:
     default: op

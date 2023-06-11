@@ -1,6 +1,7 @@
-package land.builders.uprightslabtool.gui;
+package land.builders.displaybuildtools.gui;
 
-import land.builders.uprightslabtool.data.PlayerData;
+import land.builders.displaybuildtools.data.playerData.PData;
+import land.builders.displaybuildtools.data.playerData.PManager;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -11,11 +12,11 @@ import xyz.xenondevs.invui.item.ItemProvider;
 import xyz.xenondevs.invui.item.builder.ItemBuilder;
 import xyz.xenondevs.invui.item.impl.AbstractItem;
 
-public class ListItem extends AbstractItem {
+public class MaterialItem extends AbstractItem {
     private Material material;
 
 
-    public ListItem(Material material){
+    public MaterialItem(Material material){
         this.material = material;
     }
     @Override
@@ -26,7 +27,8 @@ public class ListItem extends AbstractItem {
     @Override
     public void handleClick(@NotNull ClickType clickType, @NotNull Player player, @NotNull InventoryClickEvent event) {
         player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HAT,1f,1f);
-        PlayerData.playerSlabMaterial.put(player.getUniqueId(), material);
+        PData pData = PManager.getPlayerData(player.getUniqueId());
+        pData.setMaterial(material);
         player.closeInventory();
     }
 }

@@ -1,6 +1,6 @@
-package land.builders.uprightslabtool.displayUtil;
+package land.builders.displaybuildtools.displayUtil;
 
-import land.builders.uprightslabtool.data.PlayerData;
+import land.builders.displaybuildtools.data.playerData.PData;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.RayTraceResult;
 
-public class ItemDisplayUtil {
+public class UprightSlabUtil {
 //    public static void placeUtil(Player player){
 //
 //        World world = player.getWorld();
@@ -77,7 +77,9 @@ public class ItemDisplayUtil {
 
     public static void uesItemDisplayLocation(RayTraceResult rayTraceResult, Player player){
 
-        double entityX,entityY,entityZ,hitPosX,hitPosY,hitPosZ,entityBlockX,entityBlockY,entityBlockZ;
+        int entityBlockX,entityBlockY,entityBlockZ;
+
+        Double entityX,entityY,entityZ,hitPosX,hitPosY,hitPosZ;
 
         entityX = rayTraceResult.getHitEntity().getLocation().getX();
         entityY = rayTraceResult.getHitEntity().getLocation().getY();
@@ -116,7 +118,7 @@ public class ItemDisplayUtil {
         location.add(0.5,0.5,0.5);
 
         ItemDisplay itemDisplay = (ItemDisplay) player.getWorld().spawnEntity(location, EntityType.ITEM_DISPLAY);
-        ItemStack itemStack = new ItemStack(PlayerData.playerSlabMaterial.get(player.getUniqueId()));
+        ItemStack itemStack = new ItemStack(PData.getSlabMaterial(player.getUniqueId()));
         itemDisplay.setItemStack(itemStack);
         itemDisplay.setRotation(yaw,-90);
         player.playSound(player.getLocation(), Sound.BLOCK_STONE_PLACE,1f,1f);

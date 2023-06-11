@@ -1,13 +1,13 @@
-package land.builders.uprightslabtool.commands;
+package land.builders.displaybuildtools.commands;
 
-import land.builders.uprightslabtool.gui.slab.SlabGUI;
+import land.builders.displaybuildtools.gui.ItemWindow;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class UprightSlabToolCommand implements CommandExecutor {
+public class DisplayBuildToolCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player)) {
@@ -16,7 +16,7 @@ public class UprightSlabToolCommand implements CommandExecutor {
         }
         Player player = (Player) sender;
         if (player.hasPermission("uprightslabtool.use")){
-            SlabGUI.openWindow(player);
+            ItemWindow.openWindow(player);
             return true;
         }
 

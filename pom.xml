@@ -5,14 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>land.builders</groupId>
-    <artifactId>UprightSlabTool</artifactId>
+    <artifactId>DisplayBuildTools</artifactId>
     <version>1.2</version>
     <packaging>jar</packaging>
 
-    <name>UprightSlabTool</name>
+    <name>DisplayBuildTools</name>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

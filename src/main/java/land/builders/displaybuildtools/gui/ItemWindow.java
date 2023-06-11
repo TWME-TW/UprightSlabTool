@@ -1,8 +1,5 @@
-package land.builders.uprightslabtool.gui.slab;
+package land.builders.displaybuildtools.gui;
 
-import land.builders.uprightslabtool.gui.BackItem;
-import land.builders.uprightslabtool.gui.ForwardItem;
-import land.builders.uprightslabtool.gui.ListItem;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -18,16 +15,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SlabGUI {
+public class ItemWindow {
     private static Gui gui;
 
     public static void buildGUI () {
         Item border = new SimpleItem(new ItemBuilder(Material.BLACK_STAINED_GLASS_PANE).setDisplayName("§r"));
 
         List<Item> items = Arrays.stream(Material.values())
-                .filter(material -> material.name().toLowerCase().matches(".*slab+"))
-                .map(ListItem::new)
+                .filter(material -> material.isSolid() && !material.isAir())
+                .map(MaterialItem::new)
                 .collect(Collectors.toList());
+
 
         gui = PagedGui.items()
                 .setStructure(
@@ -48,7 +46,7 @@ public class SlabGUI {
         player.playSound(player.getLocation(), Sound.BLOCK_CHEST_OPEN,1f,1f);
         Window window = Window.single()
                 .setViewer(player)
-                .setTitle("直立半磚選單")
+                .setTitle("方塊選單")
                 .setGui(gui)
                 .build();
         window.open();

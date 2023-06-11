@@ -1,21 +1,21 @@
-package land.builders.uprightslabtool;
+package land.builders.displaybuildtools;
 
-import land.builders.uprightslabtool.commands.UprightSlabToolCommand;
-import land.builders.uprightslabtool.gui.slab.SlabGUI;
-import land.builders.uprightslabtool.listeners.BlockBreakListener;
-import land.builders.uprightslabtool.listeners.LeftClickListener;
-import land.builders.uprightslabtool.listeners.PlayerQuitListener;
-import land.builders.uprightslabtool.listeners.RightClickListener;
+import land.builders.displaybuildtools.commands.DisplayBuildToolCommand;
+import land.builders.displaybuildtools.gui.ItemWindow;
+import land.builders.displaybuildtools.listeners.BlockBreakListener;
+import land.builders.displaybuildtools.listeners.LeftClickListener;
+import land.builders.displaybuildtools.listeners.PlayerQuitListener;
+import land.builders.displaybuildtools.listeners.RightClickListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class UprightSlabTool extends JavaPlugin {
+public final class DisplayBuildTools extends JavaPlugin {
 
     @Override
     public void onEnable() {
         registerCommands();
         registerListener();
-        SlabGUI.buildGUI();
+        ItemWindow.buildGUI();
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class UprightSlabTool extends JavaPlugin {
     }
 
     private void registerCommands() {
-        this.getCommand("uprightslabtool").setExecutor(new UprightSlabToolCommand());
+        this.getCommand("uprightslabtool").setExecutor(new DisplayBuildToolCommand());
     }
 
     private void registerListener() {
